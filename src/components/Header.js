@@ -5,7 +5,6 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-light">
         <div className="container">
-        
           <Link to="/" className="navbar-brand">
             {this.props.appName.toLowerCase()}
           </Link>
@@ -15,7 +14,7 @@ class Header extends Component {
                 Home
               </Link>
             </li>
-            <li>
+            <li className="nav-item">
               <Link to="login" className="nav-link">
                 Sign In
               </Link>

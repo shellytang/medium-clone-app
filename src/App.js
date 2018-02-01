@@ -22,7 +22,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  appName: state.appName
+  appName: state.common.appName
 });
 
 export default connect(mapStateToProps, () => ({}) )(App);
