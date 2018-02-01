@@ -1,5 +1,8 @@
 import { applyMiddleware, createStore } from 'redux';
 import { promiseMiddleware } from './middleware';
+import createHistory from 'history/createBrowserHistory';
+
+export const history = createHistory();
 
 const defaultState = {
   appName: 'conduit',
@@ -15,6 +18,4 @@ const reducer = function (state = defaultState, action) {
 };
 
 const middleware = applyMiddleware(promiseMiddleware);
-const store = createStore(reducer, middleware);
-
-export default store;
+export const store = createStore(reducer, middleware);
