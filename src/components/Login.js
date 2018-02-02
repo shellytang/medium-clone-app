@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListErrors from './ListErrors';
-import agent from './agent';
+import agent from '../agent';
 
 class Login extends Component {
   constructor() {
@@ -16,6 +16,7 @@ class Login extends Component {
 
   render() {
     const { email, password} = this.props;
+   
     return (
       <div className="auth-page">
         <div className="container page">
@@ -28,7 +29,7 @@ class Login extends Component {
                 </a>
               </p>
 
-              <ListErrors error={this.props.errors} />
+              <ListErrors errors={this.props.errors} />
 
               <form onSubmit={this.submitForm(email, password)}>
                 <fieldset>
@@ -75,7 +76,7 @@ const mapStateToProps = state => ({ ...state.auth});
 const mapDispatchToProps = dispatch => ({
   onChangeEmail: value => dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', value }),
   onChangePassword: value => dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'password', value}),
-  onSubmit: value => dispatch({ type: 'LOGIN', payload: agent.Auth.login(email, password)})
+  onSubmit: (email, password) => dispatch({ type: 'LOGIN', payload: agent.Auth.login(email, password)})
 });
 
-export default connect(() => ({}), () => ({}))(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
