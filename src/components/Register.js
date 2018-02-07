@@ -4,18 +4,6 @@ import React, { Component} from 'react';
 import agent from '../agent';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({ ...state.auth });
-
-const mapDispatchToProps = dispatch => ({ 
-  onChangeEmail: value => dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', value}),
-  onChangePassword: value => dispatch({ type: 'UPDATED_FIELD_AUTH', key: 'password', value}),
-  onChangeUsername: value => dispatch({ type: 'UPDATED_FIELD_AUTH', key: 'username', value}),
-  onSubmit: (username, email, password) => {
-    const payload = agent.Auth.register(username, email, password);
-    dispatch({ type: 'REGISTER', payload})
-  }
-});
-
 class Register extends Component {
   constructor() {
     super();
@@ -91,5 +79,17 @@ class Register extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({ ...state.auth });
+
+const mapDispatchToProps = dispatch => ({
+  onChangeEmail: value => dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', value }),
+  onChangePassword: value => dispatch({ type: 'UPDATED_FIELD_AUTH', key: 'password', value }),
+  onChangeUsername: value => dispatch({ type: 'UPDATED_FIELD_AUTH', key: 'username', value }),
+  onSubmit: (username, email, password) => {
+    const payload = agent.Auth.register(username, email, password);
+    dispatch({ type: 'REGISTER', payload })
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
