@@ -42,20 +42,10 @@ class Register extends Component {
                 </Link>
               </p>
 
-              <ListError errors={this.props.errors} />
+              <ListErrors errors={this.props.errors} />
 
               <form onSubmit={this.submitForm(username, email, password)}>
                 <fieldset>
-                  <fieldset className="form-group">
-                    <input 
-                      className="form-control form-control-lg"
-                      type="text"
-                      placeholder="Username"
-                      value={this.props.username}
-                      onChange={this.changeUsername}
-                    />
-                  </fieldset>
-
                   <fieldset className="form-group">
                     <input
                       className="form-control form-control-lg"
@@ -100,7 +90,6 @@ class Register extends Component {
       </div>
     );
   }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

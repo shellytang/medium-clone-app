@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ListErrors from './ListErrors';
 import agent from '../agent';
 
@@ -24,9 +25,9 @@ class Login extends Component {
             <div className="col-md-6 offset-md-3 col-xs-12">
               <h1 className="text-xs-center">Sign In</h1>
               <p className="text-xs-center">
-                <a>
+                <Link to="register">
                   Need an account?
-                </a>
+                </Link>
               </p>
 
               <ListErrors errors={this.props.errors} />

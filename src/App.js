@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import Register from './components/Register';
 import agent from './agent';
 import { store } from './store';
 import { push } from 'react-router-redux';
@@ -38,6 +39,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
         </Switch>
       </div>
     );
