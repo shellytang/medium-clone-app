@@ -7,11 +7,19 @@ const responseBody = res => res.body;
 
 let token = null;
 
+const tokenPlugin = req => {
+  if(token) {
+    req.set(`Authorization: `, `Token ${token}`)
+  }
+}
+
 const request = {
   get: url => 
     superagent.get(`${API_ROOT}${url}`).then(responseBody),
   post: (url, body) => 
-    superagent.post(`${API_ROOT}${url}`, body).then(responseBody)
+    superagent.post(`${API_ROOT}${url}`, body).then(responseBody),
+  put: (url, body) => 
+    superagent.put(`${API_ROOT}${url}`, body).then(responseBody)
 }
 
 const Articles = {

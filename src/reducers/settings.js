@@ -4,7 +4,7 @@ export default (state = {}, action) => {
       return {
         ...state,
         inProgress: false,
-        errors: action.error ? action.payload.errors: null
+        errors: action.errors ? action.payload.errors : null
       };
     case 'ASYNC_START':
       return {
@@ -12,5 +12,5 @@ export default (state = {}, action) => {
         inProgress: true
       };
   }
-  return state;
+  return state
 }

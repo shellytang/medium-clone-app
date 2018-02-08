@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+import Settings from './components/Settings';
 import agent from './agent';
 import { store } from './store';
 import { push } from 'react-router-redux';
@@ -23,7 +24,6 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.redirectTo) {
-      // this.context.router.replace(nextProps.redirectTo);
       store.dispatch(push(nextProps.redirectTo));
       this.props.onRedirect();
     }
@@ -40,6 +40,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
+          <Route path='/settings' component={Settings} />
         </Switch>
       </div>
     );
