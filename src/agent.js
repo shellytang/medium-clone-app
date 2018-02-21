@@ -22,6 +22,8 @@ const request = {
     superagent.put(`${API_ROOT}${url}`, body).then(responseBody)
 }
 
+console.log('HIIII');
+
 const Articles = {
   all: page =>
     request.get('/articles?limit=10'),

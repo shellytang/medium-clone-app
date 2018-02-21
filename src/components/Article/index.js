@@ -1,5 +1,5 @@
-import ArticleMeta from './ArticleMeta';
-import CommentContainer from './CommentContainer';
+// import ArticleMeta from './ArticleMeta';
+// import CommentContainer from './CommentContainer';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import agent from '../../agent';
@@ -17,10 +17,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Article extends Component {
+  
   componentWillMount() {
     this.props.onLoad(Promise.all([
-      agent.Articles.get(this.props.params.id),
-      agent.Comments.forArticle(this.props.params.id)
+      agent.Articles.get(this.props.match.params.id),
+      agent.Comments.forArticle(this.props.match.params.id)
     ]));
   }
 
@@ -29,10 +30,10 @@ class Article extends Component {
   }
 
   render() {
+    console.log('article: ', this.props.article);
     if(!this.props.article) {
       return null;
     }
-
     const markup = { __html: marked(this.props.article.body)}
     const canModify = this.props.currentUser && this.props.currentUser.username === this.props.article.author.username;
 
@@ -41,15 +42,15 @@ class Article extends Component {
         <div className="banner">
           <div className="container">
             <h1>{this.props.article.title}</h1>
-            <ArticleMeta 
+            {/* <ArticleMeta 
               article={this.props.article}
               canModify={canModify}
-            />
+            /> */}
         </div>
       </div>
 
       <div className="container page">
-        <div clasName="row article-content">
+        <div className="row article-content">
           <div className="col-xs-12">
             <div dangerouslySetInnerHTML={markup}></div>
             <ul className="tag-list">
@@ -70,15 +71,17 @@ class Article extends Component {
         <hr />
         <div className="article-actions"></div>
         <div className="row">
-              <CommentContainer 
+              {/* <CommentContainer 
                 comments={this.props.comments || []}
                 errors={this.props.commentErrors}
                 slug={this.props.params.id}
                 currentUser={this.props.currentUser} 
-              />
+              /> */}
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article);
